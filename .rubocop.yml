@@ -1,0 +1,80 @@
+require:
+  - rubocop-rails
+  - rubocop-rspec
+  - rubocop-performance
+
+AllCops:
+  Exclude:
+    - '**/Guardfile'
+    - 'bin/*'
+    - 'out/**/*'
+    - 'vendor/**/*'
+  
+  NewCops: enable
+
+Naming/BlockForwarding:
+  EnforcedStyle: explicit
+
+Layout/CaseIndentation:
+  EnforcedStyle: end
+
+Layout/EndAlignment:
+  EnforcedStyleAlignWith: variable
+
+Layout/LineLength:
+  Max: 120
+  AllowedPatterns: ['(\s*)# '] # Ignore lines with comments
+
+Lint/MissingSuper:
+  Exclude:
+    - 'app/services/**/*'
+
+Metrics/BlockLength:
+  Exclude:
+    - 'Gemfile'
+    - 'spec/**/*'
+    - 'config/**/*'
+    - 'lib/tasks/**/*'
+
+Metrics/ClassLength:
+  Max: 150
+
+Metrics/CyclomaticComplexity:
+  Max: 15
+
+Metrics/MethodLength:
+  Max: 20
+  Exclude:
+    - 'lib/tasks/**/*'
+    - 'spec/schemas/**/*'
+
+Metrics/PerceivedComplexity:
+  Max: 15
+
+RSpec/ExampleLength:
+  Max: 25
+
+RSpec/Focus:
+  Enabled: true
+
+RSpec/ImplicitBlockExpectation:
+  Enabled: false
+
+RSpec/MultipleExpectations:
+  Enabled: true
+  Max: 5
+
+RSpec/MultipleMemoizedHelpers:
+  Enabled: false
+
+RSpec/NestedGroups:
+  Max: 5
+
+Style/Documentation:
+  Enabled: false
+
+Style/IfUnlessModifier:
+  Enabled: false
+
+Style/HashSyntax:
+  EnforcedShorthandSyntax: either
