@@ -15,7 +15,7 @@ RSpec.describe Spacex::ClosestSatellites do
 
       it 'raises ClosestSatellitesError and returns error message' do
         expect(call).not_to be_success
-        expect(call.error).to eq('Invalid params')
+        expect(call.error).to eq('Latitude invalid, Longitude invalid, Number of satellites invalid')
       end
     end
 

@@ -23,12 +23,17 @@ module Spacex
     private
 
     def validate_params!
-      raise ClosestSatellitesError, 'Invalid params' unless valid_params?
+      errors = []
+
+      errors << 'Latitude invalid' unless latitude.is_a?(Numeric)
+      errors << 'Longitude invalid' unless longitude.is_a?(Numeric)
+      errors << 'Number of satellites invalid' unless valid_number_of_satellites_param?
+      
+      raise ClosestSatellitesError, errors.join(', ') if errors.any?
     end
 
-    def valid_params?
-      latitude.is_a?(Numeric) || longitude.is_a?(Numeric) ||
-        (number_of_satellites.is_a?(Numeric) && number_of_satellites.positive?)
+    def valid_number_of_satellites_param?
+      number_of_satellites.is_a?(Numeric) && number_of_satellites.positive?
     end
 
     def closest_satellites
