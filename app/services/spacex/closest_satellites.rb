@@ -33,7 +33,7 @@ module Spacex
     end
 
     def valid_number_of_satellites_param?
-      number_of_satellites.is_a?(Numeric) && number_of_satellites.positive?
+      number_of_satellites.is_a?(Integer) && number_of_satellites.positive?
     end
 
     def closest_satellites
