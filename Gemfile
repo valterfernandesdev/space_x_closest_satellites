@@ -54,10 +54,10 @@ gem 'bootsnap', require: false
 # gem "image_processing", "~> 1.2"
 
 # A simple HTTP and REST client for Ruby
-gem "rest-client"
+gem 'rest-client'
 
 # Calculates the Haversine distance between two points given their longitude and latitude
-gem "haversine"
+gem 'haversine'
 
 group :development, :test do
   gem 'dotenv-rails', require: 'dotenv/rails-now'

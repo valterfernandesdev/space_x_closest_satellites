@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'vcr'
 
 VCR.configure do |config|
@@ -9,7 +11,7 @@ VCR.configure do |config|
       method
       path
       body
-    ],
+    ]
   }
 
   config.configure_rspec_metadata!
