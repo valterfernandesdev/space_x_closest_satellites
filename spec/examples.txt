@@ -1,0 +1,3 @@
+example_id                                         | status | run_time        |
+-------------------------------------------------- | ------ | --------------- |
+./spec/services/spacex/starlink_api_spec.rb[1:1:1] | passed | 0.17462 seconds |
