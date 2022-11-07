@@ -93,7 +93,7 @@ group :test do
   gem 'capybara'
   gem 'database_cleaner-active_record'
   gem 'selenium-webdriver'
-  gem 'vcr'
+  gem 'vcr', github: 'vcr/vcr', ref: '90ea3ea'
   gem 'webdrivers'
   gem 'webmock'
 end

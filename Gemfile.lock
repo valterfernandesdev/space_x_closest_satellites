@@ -1,3 +1,10 @@
+GIT
+  remote: https://github.com/vcr/vcr.git
+  revision: 90ea3ea462384dd5335167a27fe47404623036d4
+  ref: 90ea3ea
+  specs:
+    vcr (6.0.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -330,7 +337,6 @@ GEM
       unf_ext
     unf_ext (0.0.8.2)
     unicode-display_width (2.3.0)
-    vcr (6.0.0)
     web-console (4.2.0)
       actionview (>= 6.0.0)
       activemodel (>= 6.0.0)
@@ -388,7 +394,7 @@ DEPENDENCIES
   stimulus-rails
   turbo-rails
   tzinfo-data
-  vcr
+  vcr!
   web-console
   webdrivers
   webmock
