@@ -25,15 +25,11 @@ module Spacex
     def validate_params!
       errors = []
 
-      errors << 'Latitude invalid' unless latitude.is_a?(Numeric)
-      errors << 'Longitude invalid' unless longitude.is_a?(Numeric)
-      errors << 'Number of satellites invalid' unless valid_number_of_satellites_param?
-      
-      raise ClosestSatellitesError, errors.join(', ') if errors.any?
-    end
+      errors << 'Latitude invalid' unless latitude.between?(-90, 90)
+      errors << 'Longitude invalid' unless longitude.between?(-180, 180)
+      errors << 'Number of satellites invalid' if number_of_satellites <= 0
 
-    def valid_number_of_satellites_param?
-      number_of_satellites.is_a?(Integer) && number_of_satellites.positive?
+      raise ClosestSatellitesError, errors.join(', ') if errors.any?
     end
 
     def closest_satellites
@@ -49,12 +45,12 @@ module Spacex
           'longitude' => satellite['longitude'],
           'distance_to_given_point_in_km' => Haversine.distance(
             [
-              satellite['latitude'],
-              satellite['longitude']
+              satellite['latitude'].to_f,
+              satellite['longitude'].to_f
             ],
             [
-              latitude,
-              longitude
+              latitude.to_f,
+              longitude.to_f
             ]
           ).to_km.round(2)
         }

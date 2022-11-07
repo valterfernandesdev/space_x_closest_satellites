@@ -5,12 +5,12 @@ require 'rails_helper'
 RSpec.describe Spacex::ClosestSatellites do
   describe '#call' do
     subject(:call) do
-      described_class.new(latitude: latitude, longitude: longitude, number_of_satellites: number_of_satellites).call
+      described_class.call(latitude: latitude, longitude: longitude, number_of_satellites: number_of_satellites)
     end
 
     context 'when params are invalid' do
-      let(:latitude) { 'invalid' }
-      let(:longitude) { nil }
+      let(:latitude) { 100 }
+      let(:longitude) { -200 }
       let(:number_of_satellites) { 0 }
 
       it 'raises ClosestSatellitesError and returns error message' do
