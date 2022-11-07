@@ -1,4 +1,4 @@
-# SpaceX Closest Satellites :rocket
+# SpaceX Closest Satellites :rocket:
 ![](http://i.kinja-img.com/gawker-media/image/upload/s--CuKZAzxf--/loqnlt3ori4ejg1eytsy.gif)
 ### This app will list "N" satellites close to a given point (latitude, longitude).
 ## Getting Started
