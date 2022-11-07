@@ -29,6 +29,7 @@ if ENV.fetch('ENABLE_COVERAGE', 'true') == 'true'
     add_filter 'app/channels/application_cable/connection.rb'
     add_filter 'app/channels/application_cable/channel.rb'
     add_filter 'app/services/application_service.rb'
+    add_filter 'app/controllers/pages_controller.rb'
   end
 end
 
