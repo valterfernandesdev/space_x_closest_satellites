@@ -2,6 +2,8 @@
 
 module Spacex
   class ClosestSatellites < ApplicationService
+    class ClosestSatellitesError < StandardError; end
+
     attr_reader :latitude, :longitude, :number_of_satellites
 
     def initialize(latitude:, longitude:, number_of_satellites:)
@@ -11,10 +13,48 @@ module Spacex
     end
 
     def call
-      all_satellites_with_lat_long
+      validate_params!
+
+      Result.new(success?: true, data: closest_satellites)
+    rescue ClosestSatellitesError => e
+      Result.new(success?: false, error: e.message)
     end
 
     private
+
+    def validate_params!
+      raise ClosestSatellitesError, 'Invalid params' unless valid_params?
+    end
+
+    def valid_params?
+      latitude.is_a?(Numeric) || longitude.is_a?(Numeric) ||
+        (number_of_satellites.is_a?(Numeric) && number_of_satellites.positive?)
+    end
+
+    def closest_satellites
+      map_satellites_distance_to_given_point.sort_by do |satellite|
+        satellite['distance_to_given_point_in_km']
+      end.first(number_of_satellites)
+    end
+
+    def map_satellites_distance_to_given_point
+      all_satellites_with_lat_long.map do |satellite|
+        {
+          'latitude' => satellite['latitude'],
+          'longitude' => satellite['longitude'],
+          'distance_to_given_point_in_km' => Haversine.distance(
+            [
+              satellite['latitude'],
+              satellite['longitude']
+            ],
+            [
+              latitude,
+              longitude
+            ]
+          ).to_km.round(2)
+        }
+      end
+    end
 
     def all_satellites_with_lat_long
       @all_satellites_with_lat_long ||= satellites_with_lat_long(Spacex::StarlinkApi.new.starlinks)
