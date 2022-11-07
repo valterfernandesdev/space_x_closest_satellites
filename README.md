@@ -5,6 +5,7 @@
 ### Assuming you have Ruby 3.1.2 and Rails 7.0.4
 ```bash
 bundle install
+yarn
 rails db:create db:migrate # TODO: Remove database from project since its not using yet
 ```
 ### Running locally
